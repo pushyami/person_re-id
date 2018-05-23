@@ -2,6 +2,7 @@
 	VERSION 1
 
 	URL STREAM MUST BE OPEN IN BROWSER FOR STREAM TO CAPTURE
+		- i.e. *browser issue not fixed in this version*
 
 	TO BE FIXED:
 		- Switch to single process, multiple thread execution
