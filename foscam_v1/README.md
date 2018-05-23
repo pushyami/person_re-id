@@ -6,7 +6,7 @@ Dependencies:
   - Python imports/other installs needed (ZK you can do this) 
   
 For foscam_scheduler_v1.py:
-  Usage: python foscam_scheduler_v1.py username password ip date time duration
+  - Usage: python foscam_scheduler_v1.py username password ip date time duration
     - Optional: putting '& disown' at the end pushes the process to the background
     - Desktop notification pops up on when capture begins
     
