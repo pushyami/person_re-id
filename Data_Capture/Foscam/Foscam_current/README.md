@@ -1,7 +1,7 @@
 Directory for scheduling video capture on Foscam devices
 
 Dependencies:
-  - URL stream must be open in local browser for vid_capture to correctly record stream
+  - URL stream must be open in local browser for the video capture portion of the program to correctly record the stream
   - Run in venv using the command 'source venv/bin/activate' from home directory
   - Python imports/other installs needed:
       - opencv
