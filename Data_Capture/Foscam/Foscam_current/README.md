@@ -11,4 +11,4 @@ Dependencies:
       - numpy
       - requests
 
-:*foscam_scheduler_v1.2.py is the current working version*:
+***foscam_scheduler_v1.2.py is the current working version**
