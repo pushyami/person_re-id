@@ -48,6 +48,9 @@ while(cap.isOpened()):
 
             #If the value is not within delta, then it means that the object is in motion:
             if(not flag):
+                #Append the current position of the object in the frame
+                bboxes_present.append((x,y,w,h))
+                #Track the object on the frame itself:
                 cv2.rectangle(frame,(x,y),(x+w,y+h), (0,0,255), 2)
         
     # Display resulting frame
