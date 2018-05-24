@@ -2,10 +2,14 @@
 	Version 2
 		
 	Single-process, multi-thread execution
-	Have to push and pull process from back and foreground
+	MUST be left OPEN in terminal (threads are not daemons)
 	
 	To launch: python foscam_scheduler_v1.2.py
-	
+	Usage: camera_name password ip date time duration
+	Ex:
+		Enter new capture > Camera1 *********** 128.46.75.*** 052418 1230 0.5
+	Schedules the given camera to capture a half-minute long video off of the given camera on May 24th, 2018 at 12:30PM
+
 """
 
 import threading
