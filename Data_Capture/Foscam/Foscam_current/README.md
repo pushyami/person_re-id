@@ -14,8 +14,8 @@ foscam_scheduler_v1.2.py is for foscam capture ***only***
 
 ***ip_scheduler.py is current working version***
 To do:
-	- input history
-	- file redirection
-	- automate videopath
-	- search tools (IP, country, state, city, type, etc.)
-	- dependency installation script
+- input history
+- file redirection
+- automate videopath
+- search tools (IP, country, state, city, type, etc.)
+- dependency installation script
