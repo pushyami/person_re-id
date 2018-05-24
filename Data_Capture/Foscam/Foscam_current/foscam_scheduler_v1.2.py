@@ -8,7 +8,7 @@
 	Usage: camera_name password ip date time duration
 	Ex:
 		Enter new capture > Camera1 *********** 128.46.75.*** 052418 1230 0.5
-	Schedules the given camera to capture a half-minute long video off of the given camera on May 24th, 2018 at 12:30PM
+	Schedules the given camera to capture a half-minute long video on May 24th, 2018 at 12:30PM
 
 """
 
