@@ -13,6 +13,7 @@ foscam_scheduler_v1.2.py is for foscam capture ***only***
   - URL stream must be open in local browser for the video capture portion of the program to correctly record the stream
 
 ***ip_scheduler.py is current working version***
+
 To do:
 - input history
 - file redirection
