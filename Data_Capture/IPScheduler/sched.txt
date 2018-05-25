@@ -1,0 +1,14 @@
+doggie
+<your client ID>
+<your client secret>
+173.165.152.131
+052518
+1559
+0.5
+doggie
+<your client ID>
+<your client secret>
+173.165.152.131
+052518
+1600
+0.5
