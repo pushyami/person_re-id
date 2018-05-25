@@ -1,4 +1,4 @@
-Version 2.1 of IP Scheduler
+**Version 2.1 is current working version** (not modularized)
 
 Schedules recording sessions of IP cameras
 
