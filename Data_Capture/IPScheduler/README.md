@@ -1,4 +1,4 @@
-**Version 2.1 is current working version** (not modularized)
+**Version 2.2 is current working version**
 
 Schedules recording sessions of IP cameras
 
