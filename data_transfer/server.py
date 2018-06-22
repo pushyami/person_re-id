@@ -2,10 +2,14 @@ import socket
 import cv2
 import numpy
 import sys
+import os
 
-if (len(sys.argv) != 3):
-	print("Usage: port camera_name")
+if ((len(sys.argv) != 3) and ((len(sys.argv) == 4) and (sys.argv[3] != "-s"))):
+	print("Usage: port camera_name [ -s ]")
 	exit()
+
+if not os.path.exists("./" + sys.argv[2]):
+	os.makedirs(sys.argv[2])
 
 def recvall(sock, count):
     buf = b''
@@ -31,16 +35,20 @@ count = 0
 
 while True:
 	length = recvall(conn,16)
-	print("Packet size: " + str(length))
+	sys.stdout.write("\rPacket size:" + str(length))
 	stringData = recvall(conn, int(length))
 	data = numpy.fromstring(stringData, dtype='uint8')
 
-	decimg=cv2.imdecode(data,1)
-	cv2.imshow(CAM_NAME, decimg)
-	cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count) + ".jpg", decimg)
+	decimg = cv2.imdecode(data, 1)
+	
 	count += 1
-	if (cv2.waitKey(1) & 0xFF == ord('q')):
-		break;
 
+	if (len(sys.argv) == 4 and sys.argv[3] == "-s"):	
+		cv2.imshow(CAM_NAME, decimg)
+		if (cv2.waitKey(1) & 0xFF == ord('q')):
+			break;
+	elif (len(sys.argv) == 3):
+		cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count) + ".jpg", decimg)
+	
 s.close()
 cv2.destroyAllWindows() 
