@@ -23,7 +23,7 @@ print("Capturing")
 while True:
     ret, frame = capture.read()
 
-    (rects, weights) = hog.detectMultiScale(frame, winStride=(4, 4), padding=(8, 8), scale=1.1)
+    (rects, weights) = hog.detectMultiScale(frame, winStride=(8, 8), padding=(64, 64), scale=1.1)
 
     if not (rects):
         encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
