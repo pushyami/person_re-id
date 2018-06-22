@@ -3,12 +3,13 @@ import cv2
 import numpy
 import sys
 import os
+import time
 
 if ((len(sys.argv) != 3) and ((len(sys.argv) == 4) and (sys.argv[3] != "-s"))):
 	print("Usage: port camera_name [ -s ]")
 	exit()
 
-if not os.path.exists("./" + sys.argv[2]):
+if (len(sys.argv) == 3) and not os.path.exists("./" + sys.argv[2]):
 	os.makedirs(sys.argv[2])
 
 def recvall(sock, count):
@@ -32,17 +33,19 @@ conn, addr = s.accept()
 print("Connection established on port " + str(TCP_PORT))
 
 count = 0
+curr_count = 0
+FPS_rate = 0
 
+start_time = time.time()
 while True:
 	length = recvall(conn,16)
-	sys.stdout.write("\rPacket size:" + str(length))
+	if length is None:
+		break;
 	stringData = recvall(conn, int(length))
 	data = numpy.fromstring(stringData, dtype='uint8')
 
 	decimg = cv2.imdecode(data, 1)
 	
-	count += 1
-
 	if (len(sys.argv) == 4 and sys.argv[3] == "-s"):	
 		cv2.imshow(CAM_NAME, decimg)
 		if (cv2.waitKey(1) & 0xFF == ord('q')):
@@ -50,5 +53,15 @@ while True:
 	elif (len(sys.argv) == 3):
 		cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count % 9001) + ".jpg", decimg)
 	
+	count += 1
+	elapsed_time = time.time()
+	if (elapsed_time - start_time > 1):
+		start_time = time.time()
+		FPS_rate = count - curr_count
+		curr_count = count
+
+	sys.stdout.write("\rPacket size:" + str(int(length)) + " | FPS:" + str(FPS_rate))
+
+print("Connection closed")
 s.close()
 cv2.destroyAllWindows() 
