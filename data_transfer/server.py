@@ -48,7 +48,7 @@ while True:
 		if (cv2.waitKey(1) & 0xFF == ord('q')):
 			break;
 	elif (len(sys.argv) == 3):
-		cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count) + ".jpg", decimg)
+		cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count % 9001) + ".jpg", decimg)
 	
 s.close()
 cv2.destroyAllWindows() 
