@@ -16,3 +16,7 @@ class Re_id:
 
 	def average_vectors(self, new_features):
 		feature_vector = (np.array(feature_vector) + np.array(new_features)) / 2 
+
+	def get_goldfish(self):
+		#print ([self.feature_vector,[self.frame_name,self.camera_name,self.id_time]])
+		return self.feature_vector.tolist(),[self.frame_name,self.camera_name,self.id_time]
