@@ -11,6 +11,15 @@ if ((len(sys.argv) != 3) and ((len(sys.argv) == 4) and (sys.argv[3] != "-s"))):
 
 if (len(sys.argv) == 3) and not os.path.exists("./" + sys.argv[2]):
 	os.makedirs(sys.argv[2])
+#
+#
+#	 NON-SYSTEMS PEOPLE DO YOUR STUFF HERE
+#	 
+#
+#=====================================
+def _POLO_(frame_name, frame):
+	cv2.imshow(frame_name, frame)
+#=====================================
 
 def recvall(sock, count):
     buf = b''
@@ -45,7 +54,8 @@ while True:
 	data = numpy.fromstring(stringData, dtype='uint8')
 
 	decimg = cv2.imdecode(data, 1)
-	
+	_POLO_(CAM_NAME, decimg)	
+
 	if (len(sys.argv) == 4 and sys.argv[3] == "-s"):	
 		cv2.imshow(CAM_NAME, decimg)
 		if (cv2.waitKey(1) & 0xFF == ord('q')):
