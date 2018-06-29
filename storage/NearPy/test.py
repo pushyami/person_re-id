@@ -6,27 +6,38 @@ import re_id
 from nearpy import Engine
 from nearpy.distances import CosineDistance
 from nearpy.hashes import RandomBinaryProjectionTree
+import kdtree
 
 import kdtree
 
 def print_results(results):
-	print('	 Data \t| Distance')
+	print('  Data \t| Distance')
 	for r in results:
 		data = r[1]
+<<<<<<< HEAD
 		# print("Data: " + str(data.frame_name) + ", " + str(data.camera_name) + ", " + str(data.id_time))
 		# print("\t" + str(data.bucket_key))
 		dist = r[2]
 		# print("Distance: " + str(dist))
 		print('  {} \t| {:.4f}'.format(data, dist))
+=======
+		dist = r[2]	
+		print('  {} \t| {:.4f}'.format(data, dist))	
+>>>>>>> 5bbe9f7644b229c71935bf78f5e524a25e08ede0
 
 DIM = 4096
 
+<<<<<<< HEAD
 POINTS = 200
+=======
+POINTS = 10000 
+>>>>>>> 5bbe9f7644b229c71935bf78f5e524a25e08ede0
 
-rbpt = RandomBinaryProjectionTree('rbpt', 8, 3)
+rbpt = RandomBinaryProjectionTree('rbpt', 64, 3)
 
 engine = Engine(DIM, lshashes=[rbpt], distance=CosineDistance())
 
+<<<<<<< HEAD
 # matrix = numpy.zeros((POINTS, DIM))
 vectors = []
 vectors_k = []
@@ -38,14 +49,34 @@ for i in xrange(POINTS):
 	new_id = re_id.Re_id(frame, cam, v)
 	vectors.append(new_id)
 
+=======
+v_list = []
+
+matrix = numpy.zeros((POINTS, DIM))
+for i in xrange(POINTS):
+	v = numpy.random.randn(DIM)
+	cam = "Cam"
+	frame = "Cam1_" + str(i)
+	new_id = re_id.Re_id(frame, cam, v)
+	matrix[i, :] = nearpy.utils.utils.unitvec(v)
+	engine.store_vector(v, new_id)
+			
+	v_list.append(v)
+	
+start = time.time()
+>>>>>>> 5bbe9f7644b229c71935bf78f5e524a25e08ede0
 
 	fff = [v.tolist(),[cam,frame]]
 	vectors_k.append(fff)
 
+<<<<<<< HEAD
 start = time.time()
 for i in vectors:
 	# matrix[i, :] = nearpy.utils.utils.unitvec(v)
 	engine.store_vector(i.feature_vector, i)
+=======
+results = engine.neighbours(query)		
+>>>>>>> 5bbe9f7644b229c71935bf78f5e524a25e08ede0
 
 end = time.time()
 

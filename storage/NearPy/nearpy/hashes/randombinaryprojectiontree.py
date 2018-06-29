@@ -172,7 +172,7 @@ class RandomBinaryProjectionTree(LSHash):
             projection = self.normals_csr.dot(v)
         else:
             # Project vector onto all hyperplane normals
-            projection = numpy.dot(self.normals, v)
+	    projection = numpy.dot(self.normals, v)
 
         # Build binary key
         binary_key = ''.join(['1' if x > 0.0 else '0' for x in projection])
