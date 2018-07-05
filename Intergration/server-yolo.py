@@ -6,7 +6,7 @@ import os
 import time
 import logging
 
-caffe_root = '~/object_tracking/data_transfer/caffe/'
+caffe_root = '~/caffe/'
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 
