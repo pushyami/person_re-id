@@ -1,0 +1,7 @@
+{
+  "nearpy/tests/hash_storage_tests.py::TestHashStorage": true, 
+  "nearpy/tests/projection_trees_tests.py::TestRandomBinaryProjectionTree": true, 
+  "nearpy/tests/storage_tests.py::MemoryStorageTest": true, 
+  "nearpy/tests/storage_tests.py::RedisStorageTest": true, 
+  "nearpy/tests/storage_tests.py::StorageTest": true
+}
