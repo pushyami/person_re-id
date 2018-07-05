@@ -55,6 +55,7 @@ cat python/requirements.txt | xargs -L 1 sudo pip install
 sudo ln -s /usr/include/python2.7/ /usr/local/include/python2.7
 sudo ln -s /usr/local/lib/python2.7/dist-packages/numpy/core/include/numpy/ /usr/local/include/python2.7/numpy
 cp Makefile.config.example Makefile.config
+echo "Please make some changes on Makefile.config as required"
 make pycaffe
 make all
 make test
