@@ -3,7 +3,7 @@ import cv2
 import numpy
 import sys
 import time
-from filter import filter
+from filter_cv2_4 import filter
 
 if (len(sys.argv) != 3):
     print("Usage: host_ip host_port")
