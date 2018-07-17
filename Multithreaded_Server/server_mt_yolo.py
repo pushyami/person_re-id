@@ -89,7 +89,10 @@ def Main():
                 logging.info("Connection established on port " + str(TCP_PORT))
                 start_new_thread(threaded_func, (conn,))
                 cam_counter += 1
-        
+
+        logging.info("Connection closed")
+        s.close()
+        cv2.destroyAllWindows() 
 
 def threaded_func(conn):
     CAM_NAME = "cam" + str(cam_counter)
@@ -128,6 +131,5 @@ def threaded_func(conn):
 
 	sys.stdout.write("\rPacket size:" + str(int(length)) + " | FPS:" + str(FPS_rate))
 
-logging.info("Connection closed")
-s.close()
-cv2.destroyAllWindows() 
+if __name__ == "__main__":
+        Main()
