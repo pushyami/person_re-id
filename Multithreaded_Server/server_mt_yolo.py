@@ -11,12 +11,9 @@ caffe_root = '~/caffe/'
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 
-if ((len(sys.argv) != 3) and ((len(sys.argv) == 4) and (sys.argv[3] != "-s"))):
-	print("Usage: port camera_name [ -s ]")
+if ((len(sys.argv) != 2) and ((len(sys.argv) == 3) and (sys.argv[2] != "-s"))):
+	print("Usage: port [ -s ]")
 	exit()
-
-if (len(sys.argv) == 3) and not os.path.exists("./" + sys.argv[2]):
-	os.makedirs(sys.argv[2])
 
 model = "./hw2-deploy.prototxt"
 weights = "./hw2-weights.caffemodel"
@@ -32,6 +29,7 @@ nnInputHeight = 32
 total = 0
 num = 0
 
+cam_counter = 0
 #
 #
 #	 NON-SYSTEMS PEOPLE DO YOUR STUFF HERE
@@ -78,7 +76,7 @@ def recvall(sock, count):
     return buf
 
 TCP_PORT = int(sys.argv[1])
-CAM_NAME = CAM
+CAM_NAME = cam + str(cam_counter)
 
 def Main():
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -89,10 +87,16 @@ def Main():
         while True:
                 conn, addr = s.accept()
                 logging.info("Connection established on port " + str(TCP_PORT))
-
-        start_new_thread(threaded_func, (conn,)) 
+                start_new_thread(threaded_func, (conn,))
+                cam_counter += 1
+        
 
 def threaded_func(conn):
+    CAM_NAME = "cam" + str(cam_counter)
+    
+    if(not os.path.exists("./cam" + str(cam_counter))):
+            os.makedirs("cam" + str(cam_counter))
+
     count = 0
     curr_count = 0
     FPS_rate = 0
@@ -108,11 +112,11 @@ def threaded_func(conn):
 	decimg = cv2.imdecode(data, 1)
 	_POLO_(CAM_NAME, decimg)	
 
-	if (len(sys.argv) == 4 and sys.argv[3] == "-s"):	
+	if (len(sys.argv) == 3 and sys.argv[2] == "-s"):	
 		cv2.imshow(CAM_NAME, decimg)
 		if (cv2.waitKey(1) & 0xFF == ord('q')):
 			break;
-	elif (len(sys.argv) == 3):
+	elif (len(sys.argv) == 2):
 		cv2.imwrite(CAM_NAME + "/" + CAM_NAME + "_" + str(count % 9001) + ".jpg", decimg)
 	
 	count += 1
