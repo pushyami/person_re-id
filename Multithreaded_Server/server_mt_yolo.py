@@ -76,7 +76,7 @@ def recvall(sock, count):
     return buf
 
 TCP_PORT = int(sys.argv[1])
-CAM_NAME = cam + str(cam_counter)
+CAM_NAME = "cam" + str(cam_counter)
 
 def Main():
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

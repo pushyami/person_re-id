@@ -1,0 +1,537 @@
+#
+######
+### INPUT LAYER ######
+
+######
+#TRAIN INPUT LAYER
+#
+layer {
+    name: "data"
+    type: "Input"
+    top: "data"
+    input_param { shape: { dim: 1 dim: 3 dim: 32 dim: 32 } } # 1dim batch or individual : 2dim no if channels; 3 widhth and 4 height
+}
+
+
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+layer{
+	name: "conv11"
+	type: "Convolution"
+	bottom: "data"
+	top: "conv11"	
+	param {
+		lr_mult:1  #weights
+	}
+	param {
+		lr_mult:2  #biases
+	}
+	convolution_param { #convolutional layer parameters
+		num_output: 64 #number of filters
+		pad: 1 #padding on each side of the image
+		kernel_size: 3 #3x3 kernel
+		weight_filler {
+			type: "xavier" #method of initalizing weights
+		}
+		bias_filler {
+			type: "constant" #method of filling biases
+			value: 0 #initialze the biases to 0
+		}
+	}
+}
+######################################################
+
+######
+### RELU LAYER
+#
+
+layer {
+	name: "relu11"
+	type: "ReLU"
+	bottom: "conv11"
+	top: "conv11"
+}
+
+
+#######################################################
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+#layer{
+#	name: "conv12"
+#	type: "Convolution"
+#	bottom: "conv11"
+#	top: "conv12"	
+#	param {
+#		lr_mult:1  #weights
+#	}
+#	param {
+#		lr_mult:2  #biases
+#	}
+#	convolution_param { #convolutional layer parameters
+#		num_output: 64 #number of filters
+#		pad: 1 #padding on each side of the image
+#		kernel_size: 3 #3x3 kernel
+#		weight_filler {
+#			type: "xavier" #method of initalizing weights
+#		}
+#		bias_filler {
+#			type: "constant" #method of filling biases
+#			value: 0 #initialze the biases to 0
+#		}
+#	}
+#}
+######################################################
+
+######
+### RELU LAYER
+#
+
+#layer {
+#	name: "relu12"
+#	type: "ReLU"
+#	bottom: "conv12"
+#	top: "conv12"
+#}
+
+
+#######################################################
+
+
+######
+### POOLING LAYER
+#
+
+layer {
+	name:"pool1"
+	type: "Pooling"
+	bottom: "conv11"  ### recheck????????????
+	top: "pool1"
+	pooling_param {	
+		pool: MAX   #try average and stochastic pooling
+		kernel_size: 2 #2x2 kernel
+		stride: 2 #dimensions cut in half after this layer
+	}
+}
+
+#########################################################
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+layer{
+	name: "conv21"
+	type: "Convolution"
+	bottom: "pool1"
+	top: "conv21"	
+	param {
+		lr_mult:1  #weights
+	}
+	param {
+		lr_mult:2  #biases
+	}
+	convolution_param { #convolutional layer parameters
+		num_output: 128 #number of filters
+		pad: 1 #padding on each side of the image
+		kernel_size: 3 #3x3 kernel
+		weight_filler {
+			type: "xavier" #method of initalizing weights
+		}
+		bias_filler {
+			type: "constant" #method of filling biases
+			value: 0 #initialze the biases to 0
+		}
+	}
+}
+######################################################
+
+######
+### RELU LAYER
+#
+
+layer {
+
+	name: "relu21"
+	type: "ReLU"
+	bottom: "conv21"
+	top: "conv21"
+}
+
+
+#######################################################
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+#layer{
+#	name: "conv22"
+#	type: "Convolution"
+#	bottom: "conv21"
+#	top: "conv22"	
+#	param {
+#		lr_mult:1  #weights
+#	}
+#	param {
+#		lr_mult:2  #biases
+#	}
+#	convolution_param { #convolutional layer parameters
+#		num_output: 128 #number of filters
+#		pad: 1 #padding on each side of the image
+#		kernel_size: 3 #3x3 kernel
+#		weight_filler {
+#			type: "xavier" #method of initalizing weights
+#		}
+#		bias_filler {
+#			type: "constant" #method of filling biases
+#			value: 0 #initialze the biases to 0
+#		}
+#	}
+#}
+######################################################
+
+######
+### RELU LAYER
+#
+
+#layer {
+#	name: "relu22"
+#	type: "ReLU"
+#	bottom: "conv22"
+#	top: "conv22"
+#}
+
+
+#######################################################
+
+
+######
+### POOLING LAYER
+#
+
+layer {
+	name:"pool2"
+	type: "Pooling"
+	bottom: "conv21"  ### recheck????????????
+	top: "pool2"
+	pooling_param {	
+		pool: MAX   #try average and stochastic pooling
+		kernel_size: 2 #2x2 kernel
+		stride: 2 #dimensions cut in half after this layer
+	}
+}
+
+#########################################################
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+layer{
+	name: "conv31"
+	type: "Convolution"
+	bottom: "pool2"
+	top: "conv31"	
+	param {
+		lr_mult:1  #weights
+	}
+	param {
+		lr_mult:2  #biases
+	}
+	convolution_param { #convolutional layer parameters
+		num_output: 256 #number of filters
+		pad: 1 #padding on each side of the image
+		kernel_size: 3 #3x3 kernel
+		weight_filler {
+			type: "xavier" #method of initalizing weights
+		}
+		bias_filler {
+			type: "constant" #method of filling biases
+			value: 0 #initialze the biases to 0
+		}
+	}
+}
+######################################################
+
+######
+### RELU LAYER
+#
+
+layer {
+	name: "relu31"
+	type: "ReLU"
+	bottom: "conv31"
+	top: "conv31"
+}
+
+
+#######################################################
+###################################################3
+
+######
+### CONVOLUTIONAL LAYER
+#
+
+#layer{
+#	name: "conv32"
+#	type: "Convolution"
+#	bottom: "conv31"
+#	top: "conv32"	
+#	param {
+#		lr_mult:1  #weights
+#	}
+#	param {
+#		lr_mult:2  #biases
+#	}
+#	convolution_param { #convolutional layer parameters
+#		num_output: 256 #number of filters
+#		pad: 1 #padding on each side of the image
+#		kernel_size: 3 #3x3 kernel
+#		weight_filler {
+#			type: "xavier" #method of initalizing weights
+#		}
+#		bias_filler {
+#			type: "constant" #method of filling biases
+#			value: 0 #initialze the biases to 0
+#		}
+#	}
+#}
+######################################################
+
+######
+### RELU LAYER
+#
+
+#3layer {
+#	name: "relu32"
+#	type: "ReLU"
+#	bottom: "conv32"
+#	top: "conv32"
+#}
+
+
+#######################################################
+
+
+######
+### POOLING LAYER
+#
+
+layer {
+	name:"pool3"
+	type: "Pooling"
+	bottom: "conv31"  ### recheck????????????
+	top: "pool3"
+	pooling_param {	
+		pool: MAX   #try average and stochastic pooling
+		kernel_size: 2 #2x2 kernel
+		stride: 2 #dimensions cut in half after this layer
+	}
+}
+
+#########################################################
+
+######
+### FULLY CONNECTED LAYER
+#
+
+layer{
+	name:"fc1"
+	type: "InnerProduct"
+	bottom: "pool3"
+	top: "fc1"
+	param {
+		lr_mult: 1
+	}
+	param {
+		lr_mult:2
+	}
+	inner_product_param{
+		num_output: 1024  #number of nodes
+		weight_filler {
+			type:"xavier"
+		}
+		bias_filler {
+			type:"constant" ### value??????????
+		}
+	}
+}
+
+#########################################################
+######################################################
+
+######
+### RELU LAYER
+#
+
+layer {
+	name: "relu1"
+	type: "ReLU"
+	bottom: "fc1"
+	top: "fc1"
+}
+
+
+#######################################################
+#########################################################
+
+######
+### FULLY CONNECTED LAYER
+#
+
+layer{
+	name:"fc2"
+	type: "InnerProduct"
+	bottom: "fc1"
+	top: "fc2"
+	param {
+		lr_mult: 1
+	}
+	param {
+		lr_mult:2
+	}
+	inner_product_param{
+		num_output: 512  #number of nodes
+		weight_filler {
+			type:"xavier"
+		}
+		bias_filler {
+			type:"constant" ### value??????????
+		}
+	}
+}
+
+#########################################################
+######################################################
+
+######
+### RELU LAYER
+#
+
+layer {
+	name: "relu2"
+	type: "ReLU"
+	bottom: "fc2"
+	top: "fc2"
+}
+
+
+#######################################################
+#########################################################
+
+######
+### FULLY CONNECTED LAYER
+#
+
+layer{
+	name:"fc3"
+	type: "InnerProduct"
+	bottom: "fc2"
+	top: "fc3"
+	param {
+		lr_mult: 1
+	}
+	param {
+		lr_mult:2
+	}
+	inner_product_param{
+		num_output: 4  #number of nodes
+		weight_filler {
+			type:"xavier"
+		}
+		bias_filler {
+			type:"constant" ### value??????????
+		}
+	}
+}
+
+#########################################################
+######################################################
+
+######
+### RELU LAYER - no relu after final FC
+#
+
+##########################################################
+
+
+######
+### SOFTMAX LAYER
+#
+
+
+### Softmax without loss for testing
+
+layer {
+	bottom: "fc3" ##### check fc8 ?????????
+	top: "prob"
+	name: "prob"
+	type: "Softmax"
+	include {
+		phase: TEST
+	}
+}
+
+##########################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
