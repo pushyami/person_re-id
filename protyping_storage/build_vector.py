@@ -32,7 +32,6 @@ for next_read_line in f:
     
     if(i == 10):
         query = vector
-        print (query)
     else:
         engine.store_vector(vector, tuple(vector))
 
@@ -40,8 +39,6 @@ for next_read_line in f:
 
 # Get nearest neighbors:
 N = engine.neighbours(query)
-
-print(len(N))
 
 for x in N:
     print (x[1])
