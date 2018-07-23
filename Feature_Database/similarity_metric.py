@@ -13,8 +13,6 @@ def getVector(featurevector):
 	for i in body:
 		result.append(float(i))
 
-	print (result)
-
 	return result
 
 
@@ -27,7 +25,6 @@ lines2 = num2.readlines()
 
 
 for i in range(len(lines1)):
-	print (lines1[i],lines2[i])
 	first = getVector(lines1[i])
 	second = getVector(lines2[i])
 
