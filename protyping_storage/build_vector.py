@@ -1,7 +1,7 @@
 from nearpy import Engine
-from nearpy.hashes import RandomBinaryProjections
-from nearpy.distances import CosineDistance
 from nearpy.filters import NearestFilter
+from nearpy.distances import CosineDistance
+from nearpy.hashes import RandomBinaryProjections
 from nearpy.storage import MemoryStorage
 import numpy
 
@@ -29,7 +29,7 @@ for next_read_line in f:
 
     vector = numpy.asarray(split_arr)
     
-    if(i == 10):
+    if(i == 51):
         query = vector
         print (query)
     else:
@@ -43,6 +43,8 @@ N = engine.neighbours(query)
 
 # Number of nearest neighbors:
 print(len(N))
+
+print("Nearest Neighbors")
 
 for x in N:
     #Printing the id of the vector here as needed:
