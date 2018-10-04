@@ -19,7 +19,7 @@ i = 0
 
 query = numpy.zeros(dimension)
 
-f = open('fvec_crop.txt', 'r')
+f = open('test.txt', 'r')
 # Opening, reading from the file::
 for next_read_line in f:
     next_read_line = next_read_line.rstrip()
